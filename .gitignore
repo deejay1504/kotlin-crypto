@@ -1,0 +1,15 @@
+.settings/*
+.classpath
+.project
+.editorconfig
+.gitattributes
+
+.idea
+*.iml
+
+.gradle
+build/
+bin/
+out/
+gradle/
+lib/
