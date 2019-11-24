@@ -4,15 +4,16 @@
 
 <body>
 
-<h2>Gig Finder</h2>
+<h2>Crypto Currencies</h2>
 
 
-<form th:object="${cryptoForm}" class="form-horizontal" id="cryptoForm" name="cryptoForm" th:action="@{/gigfinder}" method="post">
+<form th:object="${cryptoForm}" class="form-horizontal" id="cryptoForm" name="cryptoForm" th:action="@{/cryptocurrency}" method="post">
 
+    <!--
     <div>
         <table>
             <tr>
-                <td class="gig-hdr"><label>Gig location:</label></td>
+                <td class="gig-hdr"><label>Crypto Currency:</label></td>
                 <td class="gig-location">
                     <input id="gigLocation" th:field="*{gigLocation}" onchange="resetMetroAreaId();"
                         data-toggle="tooltip" data-placement="bottom" title="Enter a UK based location"/>
@@ -43,12 +44,12 @@
         <br/>
 
         <div>
-            <div th:if="*{not gigList.empty}" class="side-by-side">
+            <div th:if="*{not cryptoList.empty}" class="side-by-side">
                 <br/>
                 <button id="findGigsButton1" type="submit" class="btn btn-default" onclick="validateForm(event);">Find gigs</button>
             </div>
 
-            <div th:if="${cryptoForm.totalEntries > 0}" class="side-by-side">
+            <div th:if="${cryptoForm.cryptoList.size > 0}" class="side-by-side">
                 <label class="total-entries">&nbsp;</label>
                 <span class="badge">
                     <label th:text="${cryptoForm.totalEntries} + ' gigs found'"></label>
@@ -60,7 +61,7 @@
             <input type="hidden" id="noRecordsFound" th:value="${noRecordsFound}" />
         </div>
 
-        <div th:if="${cryptoForm.numberOfPages > 0}">
+        <div th:if="${not cryptoList.empty}">
             <div class="side-by-side">
                 <h3 th:text="Page"></h3>
             </div>
@@ -166,6 +167,7 @@
     <input type="hidden" id="currentPage"   name="currentPage"   th:value="${cryptoForm.currentPage}" />
     <input type="hidden" id="metroAreaId"   name="metroAreaId"   th:value="${cryptoForm.metroAreaId}" />
     <input type="hidden" id="maxPageNumber" name="maxPageNumber" th:value="${cryptoForm.pageNumbers}" />
+    -->
 </form>
 
 <div class="container">

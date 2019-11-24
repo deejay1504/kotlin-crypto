@@ -24,11 +24,14 @@ class HomeController(private val cryptoService: CryptoService) {
     @PostMapping("/cryptocurrency")
     fun getGigs(@Valid cryptoForm: CryptoDetailsForm, result: BindingResult, model: MutableMap<String, Any>): String {
 
-        model["cryptoForm"] = cryptoService.getCryptoDetails(cryptoForm)
+        val cryptoDetails = cryptoService.getCryptoDetails(cryptoForm)
 
-        model["noRecordsFound"] = (cryptoForm.totalEntries == 0)
+        model["cryptoForm"] = cryptoDetails
+
+        model["noRecordsFound"] = cryptoDetails.cryptoList.isEmpty()
 
         return VIEWS_GIG_DETAILS_FORM
     }
+
 
 }

@@ -16,5 +16,5 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 
 data class RAW (
 
-	@SerializedName("GBP") val gBP : GBP
+	@SerializedName("GBP") val gdp : GBP
 )

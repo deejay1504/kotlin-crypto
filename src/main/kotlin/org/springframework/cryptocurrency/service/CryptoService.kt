@@ -10,7 +10,6 @@ import org.springframework.cryptocurrency.crypto.CryptoDetailsForm
 import org.springframework.cryptocurrency.model.gbp.Json4Kotlin_Base
 import org.springframework.stereotype.Service
 import java.io.IOException
-import java.time.LocalDate
 import java.util.*
 
 
@@ -33,9 +32,9 @@ class CryptoService {
     }
 
     private fun getCryptoDetailsForCurrency(cryptoForm: CryptoDetailsForm): CryptoDetailsForm {
-        var cryptoUrl= appProperties.cryptoUrl
+        var cryptoUrl= appProperties.cryptoCurrencyUrl
         val metroAreaUrl = cryptoUrl!!.toHttpUrlOrNull()!!.newBuilder()
-                .addQueryParameter("apikey", appProperties.cryptoApiKey)
+                .addQueryParameter("apikey", appProperties.cryptoCurrencyApiKey)
                 .addQueryParameter("limit", "10")
                 .addQueryParameter("tsym", cryptoForm.currency.toUpperCase())
                 .build()
@@ -56,37 +55,22 @@ class CryptoService {
             jsonAsString = response.body!!.string()
         }
 
-        var cryptoList: ArrayList<CryptoDetails> = ArrayList<CryptoDetails>()
+        var cryptoList: ArrayList<CryptoDetails> = ArrayList()
         val jsonObj = Gson().fromJson(jsonAsString, Json4Kotlin_Base::class.java)
 
         if (jsonObj.data.isNotEmpty()) {
             for (data in jsonObj.data) {
                 var cryptoDetails: CryptoDetails = CryptoDetails()
                 cryptoDetails.name  = data.coinInfo.name
-                cryptoDetails.price = data.raw.gBP.pRICE
-                cryptoDetails.location = data.location.city
-                cryptoDetails.startDate = LocalDate.parse(data.start.date).format(df).toString()
-                cryptoDetails.songkickUrl = data.uri
-                cryptoDetails.gigToday = if (todaysDate.equals(data.start.date)) true else false
-                if (!data.start.time.isNullOrBlank()) {
-                    cryptoDetails.startTime = data.start.time.substring(0, 5)
-                }
-
+                cryptoDetails.price = data.raw.gdp.price
+                cryptoDetails.high24HourPrice = data.raw.gdp.high24Hour
+                cryptoDetails.low24HourPrice = data.raw.gdp.low24Hour
+                cryptoDetails.changePct24Hour = "%.2f".format(data.raw.gdp.changePct24Hour)
                 cryptoList.add(cryptoDetails)
             }
-            var pageNumbers: ArrayList<Int> = ArrayList<Int>()
-            for (pageNo in 1 ..cryptoForm.numberOfPages) {
-                pageNumbers.add(pageNo)
-            }
-            cryptoForm.pageNumbers = pageNumbers
-
-            sortedGigList = cryptoList.sortedWith(compareBy({it.startDate}, {it.artist}))
         }
 
         cryptoForm.cryptoList = cryptoList
-
         return cryptoForm
-
     }
-
 }

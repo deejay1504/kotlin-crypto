@@ -4,6 +4,6 @@ class CryptoDetailsForm {
 
     var currency = "GBP"
 
-    var cryptoList: List<CryptoDetails>? = emptyList()
+    var cryptoList: List<CryptoDetails> = emptyList()
 
 }

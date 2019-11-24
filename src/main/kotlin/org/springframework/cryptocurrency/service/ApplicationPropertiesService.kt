@@ -6,10 +6,10 @@ import org.springframework.stereotype.Component
 @Component
 class AppProperties {
 
-    @Value("\${cryptocurrency.api.key}")
-    lateinit var cryptoApiKey: String
+    @Value("\${crypto.currency.api.key}")
+    lateinit var cryptoCurrencyApiKey: String
 
-    @Value("\${cryptocurrency.url}")
-    var cryptoUrl: String? = null
+    @Value("\${crypto.currency.url}")
+    var cryptoCurrencyUrl: String? = null
 
 }

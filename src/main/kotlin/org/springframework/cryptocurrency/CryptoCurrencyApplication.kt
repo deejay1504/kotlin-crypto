@@ -4,13 +4,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 /**
- * Gig Finder Application usinng the Songkick API
+ * Crypto Currency Application usinng the Crypto Compare API
  *
  * @author Dee Jay
  */
 @SpringBootApplication
-class GigFinderApplication
+class CryptoCurrencyApplication
 
 fun main(args: Array<String>) {
-    runApplication<GigFinderApplication>(*args)
+    runApplication<CryptoCurrencyApplication>(*args)
 }

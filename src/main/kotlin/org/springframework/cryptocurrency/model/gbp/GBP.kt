@@ -31,7 +31,7 @@ data class GBP (
         @SerializedName("HIGHDAY") val hIGHDAY : String,
         @SerializedName("LOWDAY") val lOWDAY : String,
         @SerializedName("OPEN24HOUR") val oPEN24HOUR : String,
-        @SerializedName("HIGH24HOUR") val highH24Hour : String,
+        @SerializedName("HIGH24HOUR") val high24Hour : String,
         @SerializedName("LOW24HOUR") val low24Hour : String,
         @SerializedName("LASTMARKET") val lASTMARKET : String,
         @SerializedName("VOLUMEHOUR") val vOLUMEHOUR : String,
