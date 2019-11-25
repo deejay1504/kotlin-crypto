@@ -1,5 +1,7 @@
 package org.springframework.cryptocurrency.service
 
+
+
 import com.google.gson.Gson
 import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import okhttp3.OkHttpClient
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Service
 import java.io.IOException
 import java.util.*
 
+const val DECIMAL_FORMAT = "%.2f"
 
 @Service
 class CryptoService {
@@ -61,11 +64,15 @@ class CryptoService {
         if (jsonObj.data.isNotEmpty()) {
             for (data in jsonObj.data) {
                 var cryptoDetails: CryptoDetails = CryptoDetails()
-                cryptoDetails.name  = data.coinInfo.name
-                cryptoDetails.price = data.raw.gdp.price
-                cryptoDetails.high24HourPrice = data.raw.gdp.high24Hour
-                cryptoDetails.low24HourPrice = data.raw.gdp.low24Hour
-                cryptoDetails.changePct24Hour = "%.2f".format(data.raw.gdp.changePct24Hour)
+                val currencyName = StringBuilder()
+                currencyName.append(data.coinInfo.name).append("/").append(cryptoForm.currency)
+                val cryptoPrice = StringBuilder()
+                cryptoPrice.append(DECIMAL_FORMAT.format(data.raw.gdp.price.toDoubleOrNull())).append(" ").append(cryptoForm.currency)
+                cryptoDetails.name  = currencyName.toString()
+                cryptoDetails.price = cryptoPrice.toString()
+                cryptoDetails.high24HourPrice = DECIMAL_FORMAT.format(data.raw.gdp.high24Hour.toDoubleOrNull())
+                cryptoDetails.low24HourPrice  = DECIMAL_FORMAT.format(data.raw.gdp.low24Hour.toDoubleOrNull())
+                cryptoDetails.changePct24Hour = DECIMAL_FORMAT.format(data.raw.gdp.changePct24Hour)
                 cryptoList.add(cryptoDetails)
             }
         }

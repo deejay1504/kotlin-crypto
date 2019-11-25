@@ -16,7 +16,13 @@ class HomeController(private val cryptoService: CryptoService) {
     @GetMapping("/")
     fun welcome(model: MutableMap<String, Any>): String {
 
-        model["cryptoForm"] = cryptoService.createCryptoForm()
+//        model["cryptoForm"] = cryptoService.createCryptoForm()
+        val cryptoForm = cryptoService.createCryptoForm()
+        val cryptoDetails = cryptoService.getCryptoDetails(cryptoForm)
+
+        model["cryptoForm"] = cryptoDetails
+
+        model["noRecordsFound"] = cryptoDetails.cryptoList.isEmpty()
 
         return VIEWS_GIG_DETAILS_FORM
     }

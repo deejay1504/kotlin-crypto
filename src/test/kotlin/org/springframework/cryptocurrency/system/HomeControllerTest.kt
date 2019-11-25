@@ -4,11 +4,12 @@ package org.springframework.cryptocurrency.system
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
+import org.mockito.ArgumentMatchers
+import org.mockito.BDDMockito.any
 import org.mockito.BDDMockito.given
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.boot.test.mock.mockito.MockBean
-import org.springframework.cryptocurrency.crypto.CryptoDetails
 import org.springframework.cryptocurrency.crypto.CryptoDetailsForm
 import org.springframework.cryptocurrency.service.CryptoService
 import org.springframework.test.context.junit.jupiter.SpringExtension
@@ -24,7 +25,7 @@ class HomeControllerTest {
     lateinit var mockMvc: MockMvc
 
     @MockBean
-    private lateinit var gigService: CryptoService
+    private lateinit var cryptoService: CryptoService
 
     private lateinit var cryptoForm: CryptoDetailsForm
 
@@ -33,15 +34,8 @@ class HomeControllerTest {
     @BeforeEach
     fun setup() {
         cryptoForm = CryptoDetailsForm()
-        cryptoForm.totalEntries = 1
-        cryptoForm.resultsPerPage= 20
-        cryptoForm.metroAreaId = 24555
-        cryptoForm.gigLocation = "Brighton"
-        cryptoForm.gigStartDate = "02-11-2019"
-        cryptoForm.gigEndDate = "02-11-2019"
-        cryptoForm.gigList = ArrayList<CryptoDetails>()
-        cryptoForm.pageNumbers = ArrayList<Int>()
-        given(gigService.createCryptoForm()).willReturn(cryptoForm)
+        given(cryptoService.createCryptoForm()).willReturn(cryptoForm)
+        given(cryptoService.getCryptoDetails(cryptoForm)).willReturn(cryptoForm)
     }
 
     @Test

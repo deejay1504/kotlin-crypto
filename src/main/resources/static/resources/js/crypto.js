@@ -24,6 +24,10 @@
         if ($("#noRecordsFound").val()) {
             showAlert(event, "modal-header-warning", "No gigs found for the specified information");
         }
+
+        $("#webTicker").webTicker({
+            height:'75px'
+        });
     }
 
 

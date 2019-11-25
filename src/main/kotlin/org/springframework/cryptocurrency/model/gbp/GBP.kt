@@ -22,7 +22,7 @@ data class GBP (
         @SerializedName("MEDIAN") val mEDIAN : String,
         @SerializedName("LASTVOLUME") val lASTVOLUME : String,
         @SerializedName("LASTVOLUMETO") val lASTVOLUMETO : String,
-        @SerializedName("LASTTRADEID") val lASTTRADEID : Int,
+        @SerializedName("LASTTRADEID") val lASTTRADEID : String,
         @SerializedName("VOLUMEDAY") val vOLUMEDAY : String,
         @SerializedName("VOLUMEDAYTO") val vOLUMEDAYTO : String,
         @SerializedName("VOLUME24HOUR") val vOLUME24HOUR : String,
