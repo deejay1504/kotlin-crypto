@@ -26,7 +26,8 @@
         }
 
         $("#webTicker").webTicker({
-            height:'75px'
+//            height: '50px',
+//            color: 'yellow'
         });
     }
 

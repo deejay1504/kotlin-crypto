@@ -107,7 +107,7 @@
             </thead>
             <tbody>
                 <tr th:each="crypto, itemStat : *{cryptoList}">
-                    <td><label class="venue-field"      th:text="*{cryptoList[__${itemStat.index}__].name}"    ></label></td>
+                    <td><label class="venue-field"      th:text="*{cryptoList[__${itemStat.index}__].name}"></label></td>
                     <td><label class="venue-field"      th:text="*{cryptoList[__${itemStat.index}__].price}"    ></label></td>
                     <td><label class="venue-field"      th:text="*{cryptoList[__${itemStat.index}__].high24HourPrice}"    ></label></td>
                     <td><label class="venue-field"      th:text="*{cryptoList[__${itemStat.index}__].low24HourPrice}"    ></label></td>
@@ -118,11 +118,19 @@
 
         <ul id="webTicker">
             <li th:each="crypto, itemStat : *{cryptoList}">
-                <label th:text="*{cryptoList[__${itemStat.index}__].name}"></label>
-                <label th:text="*{cryptoList[__${itemStat.index}__].changePct24Hour}"></label>
-                <label th:text="*{cryptoList[__${itemStat.index}__].price}"></label><br/>
-                <label th:text="*{cryptoList[__${itemStat.index}__].high24HourPrice}"></label><br</wo>
-                <label th:text="*{cryptoList[__${itemStat.index}__].low24HourPrice}"></label>
+                <div class="name-ticker">
+                    <label th:text="*{cryptoList[__${itemStat.index}__].name}"></label>
+                    <label th:text="*{cryptoList[__${itemStat.index}__].changePct24Hour}"></label>
+                </div>
+                <div class="price-ticker">
+                    <label th:text="*{cryptoList[__${itemStat.index}__].price}"></label>
+                </div>
+                <div class="price-ticker">
+                    <label th:text="*{cryptoList[__${itemStat.index}__].high24HourPrice}"></label>
+                </div>
+                <div class="price-ticker">
+                    <label th:text="*{cryptoList[__${itemStat.index}__].low24HourPrice}"></label>
+                </div>
             </li>
         </ul>
     </div>

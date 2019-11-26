@@ -7129,3 +7129,13 @@ hr {
 .gig-not-today {
     color: #000000;
 }
+.name-ticker, .price-ticker {
+    background-color: blue;
+    color: red;
+    font-size: 20px;
+    font-family: "varela_roundregular", sans-serif;
+}
+.price-ticker {
+    color: yellow;
+    position: relative;
+}
