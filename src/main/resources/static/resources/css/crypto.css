@@ -7129,13 +7129,18 @@ hr {
 .gig-not-today {
     color: #000000;
 }
-.name-ticker, .price-ticker {
-    background-color: blue;
-    color: red;
+.name-ticker, .high-low-price-ticker, .price-ticker {
+    background-color: #92D9F8;
+    color: black;
     font-size: 20px;
     font-family: "varela_roundregular", sans-serif;
 }
 .price-ticker {
     color: yellow;
-    position: relative;
+}
+.price-details-green {
+    color: #037427
+}
+.price-details-red {
+    color: #F80606
 }

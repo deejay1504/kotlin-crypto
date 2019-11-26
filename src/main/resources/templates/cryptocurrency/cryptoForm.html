@@ -120,16 +120,18 @@
             <li th:each="crypto, itemStat : *{cryptoList}">
                 <div class="name-ticker">
                     <label th:text="*{cryptoList[__${itemStat.index}__].name}"></label>
-                    <label th:text="*{cryptoList[__${itemStat.index}__].changePct24Hour}"></label>
+                    <label th:class="*{cryptoList[__${itemStat.index}__].negativePct} ? price-details-red : price-details-green"
+                           th:text="*{cryptoList[__${itemStat.index}__].changePct24Hour}">
+                    </label>
                 </div>
                 <div class="price-ticker">
                     <label th:text="*{cryptoList[__${itemStat.index}__].price}"></label>
                 </div>
-                <div class="price-ticker">
-                    <label th:text="*{cryptoList[__${itemStat.index}__].high24HourPrice}"></label>
+                <div class="high-low-price-ticker">
+                    High: <label class="price-ticker" th:text="*{cryptoList[__${itemStat.index}__].high24HourPrice}"></label>
                 </div>
-                <div class="price-ticker">
-                    <label th:text="*{cryptoList[__${itemStat.index}__].low24HourPrice}"></label>
+                <div class="high-low-price-ticker">
+                    Low: <label class="price-ticker" th:text="*{cryptoList[__${itemStat.index}__].low24HourPrice}"></label>
                 </div>
             </li>
         </ul>

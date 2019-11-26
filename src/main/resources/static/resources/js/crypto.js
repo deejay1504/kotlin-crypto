@@ -25,10 +25,8 @@
             showAlert(event, "modal-header-warning", "No gigs found for the specified information");
         }
 
-        $("#webTicker").webTicker({
-//            height: '50px',
-//            color: 'yellow'
-        });
+        // Start the web tikcer
+        $("#webTicker").webTicker();
     }
 
 

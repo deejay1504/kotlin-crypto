@@ -10,6 +10,8 @@ data class CryptoDetails (
 
     var low24HourPrice: String   = "",
 
-    var changePct24Hour : String = ""
+    var changePct24Hour : String = "",
+
+    var negativePct: Boolean     = false
 
 )
