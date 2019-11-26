@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.cryptocurrency.crypto.CryptoDetails
 import org.springframework.cryptocurrency.crypto.CryptoDetailsForm
 import org.springframework.cryptocurrency.model.gbp.Json4Kotlin_Base
+import org.springframework.cryptocurrency.model.gbp.Data
 import org.springframework.stereotype.Service
 import java.io.IOException
 import java.util.*
@@ -66,21 +67,38 @@ class CryptoService {
                 var cryptoDetails: CryptoDetails = CryptoDetails()
                 val currencyName = StringBuilder()
                 currencyName.append(data.coinInfo.name).append("/").append(cryptoForm.currency)
-                val cryptoPrice = StringBuilder()
-                cryptoPrice.append(DECIMAL_FORMAT.format(data.raw.gdp.price.toDoubleOrNull())).append(" ").append(cryptoForm.currency)
-                val changePct24Hour = StringBuilder()
-                changePct24Hour.append(DECIMAL_FORMAT.format(data.raw.gdp.changePct24Hour)).append("%")
                 cryptoDetails.name  = currencyName.toString()
-                cryptoDetails.price = cryptoPrice.toString()
-                cryptoDetails.high24HourPrice = DECIMAL_FORMAT.format(data.raw.gdp.high24Hour.toDoubleOrNull())
-                cryptoDetails.low24HourPrice  = DECIMAL_FORMAT.format(data.raw.gdp.low24Hour.toDoubleOrNull())
-                cryptoDetails.changePct24Hour = changePct24Hour.toString()
-                cryptoDetails.negativePct     = changePct24Hour.toString().startsWith("-")
+                cryptoDetails = setCryptoDetails(data, cryptoForm.currency, cryptoDetails)
+
                 cryptoList.add(cryptoDetails)
             }
         }
 
         cryptoForm.cryptoList = cryptoList
         return cryptoForm
+    }
+
+    private fun setCryptoDetails(data: Data, currency: String, cryptoDetails: CryptoDetails): CryptoDetails {
+        val cryptoPrice = StringBuilder()
+        val changePct24Hour = StringBuilder()
+
+        if ("GBP".equals(currency)) {
+            cryptoPrice.append(DECIMAL_FORMAT.format(data.raw.gdp.price.toDoubleOrNull())).append(" ").append(currency)
+            changePct24Hour.append(DECIMAL_FORMAT.format(data.raw.gdp.changePct24Hour)).append("%")
+            cryptoDetails.price = cryptoPrice.toString()
+            cryptoDetails.high24HourPrice = DECIMAL_FORMAT.format(data.raw.gdp.high24Hour.toDoubleOrNull())
+            cryptoDetails.low24HourPrice  = DECIMAL_FORMAT.format(data.raw.gdp.low24Hour.toDoubleOrNull())
+            cryptoDetails.changePct24Hour = changePct24Hour.toString()
+            cryptoDetails.negativePct     = changePct24Hour.toString().startsWith("-")
+        } else if ("USD".equals(currency)) {
+            cryptoPrice.append(DECIMAL_FORMAT.format(data.raw.usd.price.toDoubleOrNull())).append(" ").append(currency)
+            changePct24Hour.append(DECIMAL_FORMAT.format(data.raw.usd.changePct24Hour)).append("%")
+            cryptoDetails.price = cryptoPrice.toString()
+            cryptoDetails.high24HourPrice = DECIMAL_FORMAT.format(data.raw.usd.high24Hour.toDoubleOrNull())
+            cryptoDetails.low24HourPrice  = DECIMAL_FORMAT.format(data.raw.usd.low24Hour.toDoubleOrNull())
+            cryptoDetails.changePct24Hour = changePct24Hour.toString()
+            cryptoDetails.negativePct     = changePct24Hour.toString().startsWith("-")
+        }
+        return cryptoDetails
     }
 }

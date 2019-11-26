@@ -4,44 +4,28 @@
 
 <body>
 
-<h2>Crypto Currencies</h2>
-
-
 <form th:object="${cryptoForm}" class="form-horizontal" id="cryptoForm" name="cryptoForm" th:action="@{/cryptocurrency}" method="post">
 
-    <!--
     <div>
         <table>
             <tr>
-                <td class="gig-hdr"><label>Crypto Currency:</label></td>
-                <td class="gig-location">
-                    <input id="gigLocation" th:field="*{gigLocation}" onchange="resetMetroAreaId();"
-                        data-toggle="tooltip" data-placement="bottom" title="Enter a UK based location"/>
-                </td>
-                <td class="start-date-hdr"><label>Start Date:</label></td>
-                <td class="start-date-msg">
-                    <input type="text" id="gigStartDate" th:field="*{gigStartDate}"
-                        data-toggle="tooltip" data-placement="bottom" title="Enter a start date for the gig"/>
-                </td>
-                <td class="end-date-hdr"><label>End Date:</label></td>
-                <td class="end-date-msg">
-                    <input type="text" id="gigEndDate" th:field="*{gigEndDate}"
-                        data-toggle="tooltip" data-placement="bottom"
-                           title="Enter an end date for the gig. To find gigs on one day, make end date the same as start date"/>
-                </td>
-                <td class="per-page-hdr"><label>Results Per Page:</label></td>
+                <td class="currency-hdr"><label>Currency:</label></td>
                 <td>
-                    <select th:id="resultsPerPage" th:field="*{resultsPerPage}" onchange="resetCurrentPage();"
-                          data-toggle="tooltip" data-placement="bottom" title="How many gigs to display on a page">
-                        <option th:value="10">10</option>
-                        <option th:value="20">20</option>
-                        <option th:value="50">50</option>
+                    <select th:id="currency" th:field="*{currency}" onchange="submitForm();"
+                          data-toggle="tooltip" data-placement="bottom" title="Which currency to supply the bitcoin data for">
+                        <option th:value="GBP">GBP</option>
+                        <option th:value="EUR">EUR</option>
+                        <option th:value="USD">USD</option>
                     </select>
                 </td>
             </tr>
         </table>
+    <div>
 
-        <br/>
+    <br/>
+    <h2>Crypto Currencies</h2>
+
+        <!--
 
         <div>
             <div th:if="*{not cryptoList.empty}" class="side-by-side">
@@ -94,28 +78,7 @@
 
     </div>
     -->
-    <div class="form-group has-feedback">
-        <table th:if="*{not cryptoList.empty}" class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>High</th>
-                    <th>Low</th>
-                    <th>%</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="crypto, itemStat : *{cryptoList}">
-                    <td><label class="venue-field"      th:text="*{cryptoList[__${itemStat.index}__].name}"></label></td>
-                    <td><label class="venue-field"      th:text="*{cryptoList[__${itemStat.index}__].price}"    ></label></td>
-                    <td><label class="venue-field"      th:text="*{cryptoList[__${itemStat.index}__].high24HourPrice}"    ></label></td>
-                    <td><label class="venue-field"      th:text="*{cryptoList[__${itemStat.index}__].low24HourPrice}"    ></label></td>
-                    <td><label class="venue-field"      th:text="*{cryptoList[__${itemStat.index}__].changePct24Hour}"    ></label></td>
-                </tr>
-            </tbody>
-        </table>
-
+    <div class="form-group">
         <ul id="webTicker">
             <li th:each="crypto, itemStat : *{cryptoList}">
                 <div class="name-ticker">

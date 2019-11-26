@@ -91,8 +91,7 @@
         return yy + "-" + mm + "-" + dd;
     }
 
-    function submitForm(href) {
-        $("#currentPage").val(href.innerText);
+    function submitForm() {
         $("#cryptoForm").submit();
     }
 

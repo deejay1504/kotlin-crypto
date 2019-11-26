@@ -41,8 +41,7 @@
             <label class="dateHeading" id="dateHeading"></label>
         </div>
         <div class="navbar-collapse collapse" id="main-navbar">
-            <ul class="nav navbar-nav navbar-right">
-
+            <ul>
                 <li th:fragment="menuItem (path,active,title,glyph,text)" class="active"
                     th:class="${active==menu ? 'active' : ''}">
                     <a th:href="@{__${path}__}" th:title="${title}">
@@ -51,17 +50,6 @@
                         <span th:text="${text}">Template</span>
                     </a>
                 </li>
-
-                <li th:replace="::menuItem ('/','home','home page','home','Home')">
-                    <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-                    <span>Home</span>
-                </li>
-
-                <li th:replace="::menuItem ('/error','error','trigger a RuntimeException to see how it is handled','warning-sign','Error')">
-                    <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
-                    <span>Error</span>
-                </li>
-
             </ul>
         </div>
     </div>
