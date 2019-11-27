@@ -18,5 +18,7 @@ data class RAW (
 
 	@SerializedName("GBP") val gdp : GBP,
 
-	@SerializedName("USD") val usd : USD
+	@SerializedName("USD") val usd : USD,
+
+	@SerializedName("EUR") val eur : EUR
 )

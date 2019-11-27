@@ -7114,14 +7114,13 @@ hr {
     width: 230px
 }
 .currency-hdr {
-    width: 75px
+    width: 80px
 }
-.pad-left-button {
-    padding-left: 8px;
-    padding-right: 7px;
+.pad-currency-field {
+    padding-left: 150px;
 }
-.pad-right-button {
-    padding-left: 6px;
+.coin-hdr {
+    width: 125px
 }
 .name-ticker, .high-low-price-ticker, .price-ticker {
     background-color: #92D9F8;
