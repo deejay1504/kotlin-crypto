@@ -7119,6 +7119,12 @@ hr {
 .pad-currency-field {
     padding-left: 150px;
 }
+.pad-radio-buttons {
+    padding-left: 10px;
+}
+.radio-buttons {
+    font-weight: bold;
+}
 .coin-hdr {
     width: 125px
 }

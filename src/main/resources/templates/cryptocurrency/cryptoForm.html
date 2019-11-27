@@ -9,7 +9,7 @@
     <div>
         <table>
             <tr>
-                <td><label class="currency-hdr">Currency:</label></td>
+                <td><label class="currency-hdr" data-toggle="tooltip" data-placement="bottom" title="Which currency to supply the bitcoin data for">Currency:</label></td>
                 <td>
                     <select th:id="currencyType" th:field="*{currencyType}" class="currency-field" onchange="submitForm();"
                           data-toggle="tooltip" data-placement="bottom" title="Which currency to supply the bitcoin data for">
@@ -19,75 +19,41 @@
                     </select>
                 </td>
                 <td><label class="pad-currency-field">&nbsp;</label></td>
-                <td><label class="coin-hdr">Number of coins:</label></td>
+                <td><label class="coin-hdr" data-toggle="tooltip" data-placement="bottom" title="How many coins to display">Number of coins:</label></td>
                 <td>
                     <select th:id="coin-limit" th:field="*{coinLimit}" onchange="submitForm();"
-                            data-toggle="tooltip" data-placement="bottom" title="How main coins to return">
+                            data-toggle="tooltip" data-placement="bottom" title="How many coins to display">
                         <option th:value="10">10</option>
                         <option th:value="20">20</option>
+                        <option th:value="30">30</option>
+                        <option th:value="40">40</option>
                         <option th:value="50">50</option>
                     </select>
                 </td>
+                <td><label class="pad-currency-field">&nbsp;</label></td>
+                <td>
+                    <label class="radio-inline radio-buttons" data-toggle="tooltip" data-placement="bottom" title="Scroll bit coins from right to left">
+                        <input type="radio" onclick="checkRadioButton();" name="radiovalue"
+                            value="left" th:checked="*{rightButton} ? 'checked'">
+                        Right
+                    </label>
+                </td>
+                <td><label class="pad-radio-buttons">&nbsp;</label></td>
+                <td>
+                    <label class="radio-inline radio-buttons" data-toggle="tooltip" data-placement="bottom" title="Scroll bit coins from left to right">
+                        <input type="radio" onclick="checkRadioButton();" name="radiovalue"
+                            value="right" th:checked="*{leftButton} ? 'checked'">
+                        Left
+                    </label>
+                </td>
             </tr>
         </table>
-    <div>
+    </div>
 
     <br/>
+
     <h2>Crypto Currencies</h2>
 
-        <!--
-
-        <div>
-            <div th:if="*{not cryptoList.empty}" class="side-by-side">
-                <br/>
-                <button id="findGigsButton1" type="submit" class="btn btn-default" onclick="validateForm(event);">Find gigs</button>
-            </div>
-
-            <div th:if="${cryptoForm.cryptoList.size > 0}" class="side-by-side">
-                <label class="total-entries">&nbsp;</label>
-                <span class="badge">
-                    <label th:text="${cryptoForm.totalEntries} + ' gigs found'"></label>
-                </span>
-            </div>
-        </div>
-
-        <div th:if="${noRecordsFound}">
-            <input type="hidden" id="noRecordsFound" th:value="${noRecordsFound}" />
-        </div>
-
-        <div th:if="${not cryptoList.empty}">
-            <div class="side-by-side">
-                <h3 th:text="Page"></h3>
-            </div>
-            <div class="side-by-side">
-                <label>
-                    <span onclick="getPreviousPage();" aria-hidden="true"
-                          class="pad-left-button glyphicon glyphicon-circle-arrow-left"
-                          data-toggle="tooltip" data-placement="bottom" title="Display the previous page of gigs">
-                    </span>
-                </label>
-            </div>
-            <div class="pagination side-by-side"
-                 th:each="pageNumber : ${cryptoForm.pageNumbers}">
-                <h2>
-                    <a href="#" onclick="submitForm(this);"
-                       th:text="${pageNumber}"
-                       th:class="${pageNumber==cryptoForm.currentPage} ? active-page">
-                    </a>
-                </h2>
-            </div>
-            <div class="side-by-side">
-                <label>
-                    <span onclick="getNextPage();" aria-hidden="true"
-                        class="pad-right-button glyphicon glyphicon-circle-arrow-right"
-                        data-toggle="tooltip" data-placement="bottom" title="Display the next page of gigs">
-                    </span>
-                </label>
-            </div>
-        </div>
-
-    </div>
-    -->
     <div class="form-group">
         <ul id="webTicker">
             <li th:each="crypto, itemStat : *{cryptoList}">
@@ -109,36 +75,11 @@
             </li>
         </ul>
     </div>
-    <!--
-    <input type="hidden" id="currentPage"   name="currentPage"   th:value="${cryptoForm.currentPage}" />
-    <input type="hidden" id="metroAreaId"   name="metroAreaId"   th:value="${cryptoForm.metroAreaId}" />
-    <input type="hidden" id="maxPageNumber" name="maxPageNumber" th:value="${cryptoForm.pageNumbers}" />
-    -->
+
+    <input type="hidden" id="leftButton"  name="leftButton"  th:value="${cryptoForm.leftButton}" />
+    <input type="hidden" id="rightButton" name="rightButton" th:value="${cryptoForm.rightButton}" />
+
 </form>
-
-<div class="container">
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div id="modal-hdr" class="alert-primary">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h3 id="modal-hdr-msg" class="modal-title"></h3>
-                </div>
-                <div class="modal-body">
-                    <h4 id="errorMsg"></h4>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-</div>
 
 </body>
 

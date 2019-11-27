@@ -79,7 +79,12 @@ class CryptoService {
             }
         }
 
-        cryptoForm.cryptoList = cryptoList.sortedWith(compareByDescending({ it.actualPrice }))
+        if (cryptoForm.rightButton) {
+            cryptoForm.cryptoList = cryptoList.sortedWith(compareByDescending({ it.actualPrice }))
+        } else {
+            cryptoForm.cryptoList = cryptoList.sortedWith(compareBy({ it.actualPrice }))
+        }
+
         return cryptoForm
     }
 
