@@ -6,6 +6,8 @@ data class CryptoDetails (
 
     var price: String            = "",
 
+    var actualPrice: Double      = 0.00,
+
     var high24HourPrice: String  = "",
 
     var low24HourPrice: String   = "",

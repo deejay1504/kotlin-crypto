@@ -59,7 +59,6 @@ class CryptoService {
         }
 
         val jsonCurrencyField = StringBuilder()
-//        "GBP": {
         jsonCurrencyField.append("\"").append(cryptoForm.currencyType).append("\"").append(":{")
         jsonAsString = jsonAsString.replace(jsonCurrencyField.toString(), "\"CURRENCY\":{")
 
@@ -68,30 +67,19 @@ class CryptoService {
 
         if (jsonObj.data.isNotEmpty()) {
             for (data in jsonObj.data) {
-                var cryptoDetails = CryptoDetails()
                 val currencyName = StringBuilder()
                 currencyName.append(data.coinInfo.name).append("/").append(cryptoForm.currencyType)
-                cryptoDetails.name  = currencyName.toString()
 
-                cryptoDetails = setDetails(cryptoForm.currencyType, data.raw.currency.price.toDoubleOrNull(), data.raw.currency.changePct24Hour,
+                val cryptoDetails = setDetails(cryptoForm.currencyType, data.raw.currency.price.toDoubleOrNull(), data.raw.currency.changePct24Hour,
                         data.raw.currency.high24Hour.toDoubleOrNull(), data.raw.currency.low24Hour.toDoubleOrNull())
 
-//                if ("GBP".equals(cryptoForm.currency)) {
-//                    cryptoDetails = setDetails(cryptoForm.currency, data.raw.gdp.price.toDoubleOrNull(), data.raw.gdp.changePct24Hour,
-//                            data.raw.gdp.high24Hour.toDoubleOrNull(), data.raw.gdp.low24Hour.toDoubleOrNull())
-//                } else if ("USD".equals(cryptoForm.currency)) {
-//                    cryptoDetails = setDetails(cryptoForm.currency, data.raw.usd.price.toDoubleOrNull(), data.raw.usd.changePct24Hour,
-//                            data.raw.usd.high24Hour.toDoubleOrNull(), data.raw.usd.low24Hour.toDoubleOrNull())
-//                } else if ("EUR".equals(cryptoForm.currency)) {
-//                    cryptoDetails = setDetails(cryptoForm.currency, data.raw.eur.price.toDoubleOrNull(), data.raw.eur.changePct24Hour,
-//                            data.raw.eur.high24Hour.toDoubleOrNull(), data.raw.eur.low24Hour.toDoubleOrNull())
-//                }
+                cryptoDetails.name  = currencyName.toString()
 
                 cryptoList.add(cryptoDetails)
             }
         }
 
-        cryptoForm.cryptoList = cryptoList
+        cryptoForm.cryptoList = cryptoList.sortedWith(compareByDescending({ it.actualPrice }))
         return cryptoForm
     }
 
@@ -102,7 +90,8 @@ class CryptoService {
 
         cryptoPrice.append(DECIMAL_FORMAT.format(price)).append(" ").append(currency)
         changePct24Hour.append(DECIMAL_FORMAT.format(pct)).append("%")
-        cryptoDetails.price = cryptoPrice.toString()
+        cryptoDetails.actualPrice     = price!!
+        cryptoDetails.price           = cryptoPrice.toString()
         cryptoDetails.high24HourPrice = DECIMAL_FORMAT.format(high24)
         cryptoDetails.low24HourPrice  = DECIMAL_FORMAT.format(low24)
         cryptoDetails.changePct24Hour = changePct24Hour.toString()
