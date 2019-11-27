@@ -16,5 +16,6 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 
 data class DISPLAY (
 
-	@SerializedName("GBP") val gBP : GBP
+        // Use a generic 'CURRENCY' object otherwise we will need a different one for each supported currency
+        @SerializedName("CURRENCY") val currency : CURRENCY
 )

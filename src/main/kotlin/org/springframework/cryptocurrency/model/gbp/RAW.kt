@@ -16,9 +16,7 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 
 data class RAW (
 
-	@SerializedName("GBP") val gdp : GBP,
+    // Use a generic 'CURRENCY' object otherwise we will need a different one for each supported currency
+	@SerializedName("CURRENCY") val currency : CURRENCY
 
-	@SerializedName("USD") val usd : USD,
-
-	@SerializedName("EUR") val eur : EUR
 )

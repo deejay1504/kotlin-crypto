@@ -39,7 +39,7 @@ class CryptoService {
         val metroAreaUrl = cryptoUrl!!.toHttpUrlOrNull()!!.newBuilder()
                 .addQueryParameter("apikey", appProperties.cryptoCurrencyApiKey)
                 .addQueryParameter("limit", cryptoForm.coinLimit)
-                .addQueryParameter("tsym", cryptoForm.currency)
+                .addQueryParameter("tsym", cryptoForm.currencyType)
                 .build()
 
         val request = Request.Builder()
@@ -58,6 +58,11 @@ class CryptoService {
             jsonAsString = response.body!!.string()
         }
 
+        val jsonCurrencyField = StringBuilder()
+//        "GBP": {
+        jsonCurrencyField.append("\"").append(cryptoForm.currencyType).append("\"").append(":{")
+        jsonAsString = jsonAsString.replace(jsonCurrencyField.toString(), "\"CURRENCY\":{")
+
         var cryptoList: ArrayList<CryptoDetails> = ArrayList()
         val jsonObj = Gson().fromJson(jsonAsString, Json4Kotlin_Base::class.java)
 
@@ -65,19 +70,22 @@ class CryptoService {
             for (data in jsonObj.data) {
                 var cryptoDetails = CryptoDetails()
                 val currencyName = StringBuilder()
-                currencyName.append(data.coinInfo.name).append("/").append(cryptoForm.currency)
+                currencyName.append(data.coinInfo.name).append("/").append(cryptoForm.currencyType)
                 cryptoDetails.name  = currencyName.toString()
 
-                if ("GBP".equals(cryptoForm.currency)) {
-                    cryptoDetails = setDetails(cryptoForm.currency, data.raw.gdp.price.toDoubleOrNull(), data.raw.gdp.changePct24Hour,
-                            data.raw.gdp.high24Hour.toDoubleOrNull(), data.raw.gdp.low24Hour.toDoubleOrNull())
-                } else if ("USD".equals(cryptoForm.currency)) {
-                    cryptoDetails = setDetails(cryptoForm.currency, data.raw.usd.price.toDoubleOrNull(), data.raw.usd.changePct24Hour,
-                            data.raw.usd.high24Hour.toDoubleOrNull(), data.raw.usd.low24Hour.toDoubleOrNull())
-                } else if ("EUR".equals(cryptoForm.currency)) {
-                    cryptoDetails = setDetails(cryptoForm.currency, data.raw.eur.price.toDoubleOrNull(), data.raw.eur.changePct24Hour,
-                            data.raw.eur.high24Hour.toDoubleOrNull(), data.raw.eur.low24Hour.toDoubleOrNull())
-                }
+                cryptoDetails = setDetails(cryptoForm.currencyType, data.raw.currency.price.toDoubleOrNull(), data.raw.currency.changePct24Hour,
+                        data.raw.currency.high24Hour.toDoubleOrNull(), data.raw.currency.low24Hour.toDoubleOrNull())
+
+//                if ("GBP".equals(cryptoForm.currency)) {
+//                    cryptoDetails = setDetails(cryptoForm.currency, data.raw.gdp.price.toDoubleOrNull(), data.raw.gdp.changePct24Hour,
+//                            data.raw.gdp.high24Hour.toDoubleOrNull(), data.raw.gdp.low24Hour.toDoubleOrNull())
+//                } else if ("USD".equals(cryptoForm.currency)) {
+//                    cryptoDetails = setDetails(cryptoForm.currency, data.raw.usd.price.toDoubleOrNull(), data.raw.usd.changePct24Hour,
+//                            data.raw.usd.high24Hour.toDoubleOrNull(), data.raw.usd.low24Hour.toDoubleOrNull())
+//                } else if ("EUR".equals(cryptoForm.currency)) {
+//                    cryptoDetails = setDetails(cryptoForm.currency, data.raw.eur.price.toDoubleOrNull(), data.raw.eur.changePct24Hour,
+//                            data.raw.eur.high24Hour.toDoubleOrNull(), data.raw.eur.low24Hour.toDoubleOrNull())
+//                }
 
                 cryptoList.add(cryptoDetails)
             }

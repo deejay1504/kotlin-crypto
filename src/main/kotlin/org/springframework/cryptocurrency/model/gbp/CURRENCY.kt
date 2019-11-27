@@ -12,7 +12,7 @@ package org.springframework.cryptocurrency.model.gbp
 
 import com.google.gson.annotations.SerializedName
 
-data class USD (
+data class CURRENCY (
 
         @SerializedName("FROMSYMBOL") val fROMSYMBOL : String,
         @SerializedName("TOSYMBOL") val tOSYMBOL : String,
@@ -57,4 +57,3 @@ data class USD (
         @SerializedName("CONVERSIONTYPE") val cONVERSIONTYPE : String,
         @SerializedName("CONVERSIONSYMBOL") val cONVERSIONSYMBOL : String
 )
-

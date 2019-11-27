@@ -2,7 +2,7 @@ package org.springframework.cryptocurrency.crypto
 
 class CryptoDetailsForm {
 
-    var currency = "GBP"
+    var currencyType = "GBP"
 
     var coinLimit = "20"
 
