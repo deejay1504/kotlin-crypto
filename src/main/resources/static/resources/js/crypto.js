@@ -31,7 +31,7 @@
     }
 
     function submitForm() {
-        $("#cryptoForm").submit();
+        $("#cryptoDetailsForm").submit();
     }
 
     function getTodaysDate() {

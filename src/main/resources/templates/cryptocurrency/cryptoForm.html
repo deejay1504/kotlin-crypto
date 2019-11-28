@@ -4,7 +4,7 @@
 
 <body>
 
-<form th:object="${cryptoForm}" class="form-horizontal" id="cryptoForm" name="cryptoForm" th:action="@{/cryptocurrency}" method="post">
+<form th:object="${cryptoDetailsForm}" class="form-horizontal" id="cryptoDetailsForm" name="cryptoDetailsForm" th:action="@{/cryptocurrency}" method="post">
 
     <div>
         <table>
@@ -52,10 +52,20 @@
 
     <br/>
 
-    <h2>Crypto Currencies</h2>
+    <div>
+        <div class="side-by-side">
+            <h2>Crypto Currencies</h2>
+        </div>
+        <div class="side-by-side">
+            <h5><label th:text="' (top ' + *{coinLimit} + ' coins by their total volume across all markets in the last 24 hours)'"></label></h5>
+        </div>
+    </div>
 
     <div class="form-group">
         <ul id="webTicker">
+            <li>
+                <span class="badge progress-bar-success"><label></label></span>
+            </li>
             <li th:each="crypto, itemStat : *{cryptoList}">
                 <div class="name-ticker">
                     <label th:text="*{cryptoList[__${itemStat.index}__].name}"></label>
@@ -76,8 +86,8 @@
         </ul>
     </div>
 
-    <input type="hidden" id="leftButton"  name="leftButton"  th:value="${cryptoForm.leftButton}" />
-    <input type="hidden" id="rightButton" name="rightButton" th:value="${cryptoForm.rightButton}" />
+    <input type="hidden" id="leftButton"  name="leftButton"  th:value="${cryptoDetailsForm.leftButton}" />
+    <input type="hidden" id="rightButton" name="rightButton" th:value="${cryptoDetailsForm.rightButton}" />
 
 </form>
 

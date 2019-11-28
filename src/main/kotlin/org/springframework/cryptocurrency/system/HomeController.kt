@@ -16,25 +16,18 @@ class HomeController(private val cryptoService: CryptoService) {
     @GetMapping("/")
     fun welcome(model: MutableMap<String, Any>): String {
 
-//        model["cryptoForm"] = cryptoService.createCryptoForm()
-        val cryptoForm = cryptoService.createCryptoForm()
-        val cryptoDetails = cryptoService.getCryptoDetails(cryptoForm)
-
-        model["cryptoForm"] = cryptoDetails
-
-        model["noRecordsFound"] = cryptoDetails.cryptoList.isEmpty()
-
-        return VIEWS_GIG_DETAILS_FORM
+        return getBitcoinDetails(cryptoService.createCryptoForm(), model)
     }
 
     @PostMapping("/cryptocurrency")
-    fun getGigs(@Valid cryptoForm: CryptoDetailsForm, result: BindingResult, model: MutableMap<String, Any>): String {
+    fun getGigs(@Valid cryptoDetailsForm: CryptoDetailsForm, result: BindingResult, model: MutableMap<String, Any>): String {
 
-        val cryptoDetails = cryptoService.getCryptoDetails(cryptoForm)
+        return getBitcoinDetails(cryptoDetailsForm, model)
+    }
 
-        model["cryptoForm"] = cryptoDetails
+    private fun getBitcoinDetails(cryptoDetailsForm: CryptoDetailsForm, model: MutableMap<String, Any>): String {
 
-        model["noRecordsFound"] = cryptoDetails.cryptoList.isEmpty()
+        model["cryptoDetailsForm"] = cryptoService.getCryptoDetails(cryptoDetailsForm)
 
         return VIEWS_GIG_DETAILS_FORM
     }
