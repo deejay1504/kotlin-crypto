@@ -11,11 +11,20 @@
             <tr>
                 <td><label class="currency-hdr" data-toggle="tooltip" data-placement="bottom" title="Which currency to supply the bitcoin data for">Currency:</label></td>
                 <td>
-                    <select th:id="currencyType" th:field="*{currencyType}" class="currency-field" onchange="submitForm();"
-                          data-toggle="tooltip" data-placement="bottom" title="Which currency to supply the bitcoin data for">
-                        <option th:value="GBP">GBP</option>
-                        <option th:value="EUR">EUR</option>
-                        <option th:value="USD">USD</option>
+                    <select th:id="currencyType" th:name="currencyType" th:field="*{currencyType}" onchange="submitForm();"
+                          data-toggle="tooltip" data-placement="bottom" class="select-hdr"
+                            title="Which currency to supply the bitcoin data for">
+                        <option th:value="GBP" class="png-attr" data-image="resources/images/gbp.png">GBP</option>
+                        <option th:value="EUR" data-image="resources/images/eur.png">EUR</option>
+                        <option th:value="USD" data-image="resources/images/usd.png">USD</option>
+                        <option th:value="INR" data-image="resources/images/inr.png">INR</option>
+                        <option th:value="AUD" data-image="resources/images/aud.png">AUD</option>
+                        <option th:value="CAD" data-image="resources/images/cad.png">CAD</option>
+                        <option th:value="SGD" data-image="resources/images/sgd.png">SGD</option>
+                        <option th:value="CHF" data-image="resources/images/chf.png">CHF</option>
+                        <option th:value="MYR" data-image="resources/images/myr.png">MYR</option>
+                        <option th:value="JPY" data-image="resources/images/jpy.png">JPY</option>
+                        <option th:value="CNY" data-image="resources/images/cny.png">CNY</option>
                     </select>
                 </td>
                 <td><label class="pad-currency-field">&nbsp;</label></td>

@@ -7075,46 +7075,8 @@ hr {
 .side-by-side {
     display: inline-block;
 }
-.artist-field {
-    width: 440px;
-    color: #000000;
-    font-weight: bold;
-}
-.venue-field {
-    width: 290px;
-}
-.location-field {
-    width: 170px;
-}
-.start-date-field {
-    width: 110px;
-}
-.end-date-field {
-    width: 140px;
-}
-.total-entries {
-    width: 45px
-}
-.gig-hdr {
-    width: 100px
-}
-.gig-location {
-    width: 220px
-}
-.start-date-hdr {
-    width: 85px
-}
-.start-date-msg {
-    width: 225px
-}
-.end-date-hdr {
-    width: 80px
-}
-.end-date-msg {
-    width: 230px
-}
 .currency-hdr {
-    width: 80px
+    width: 80px;
 }
 .pad-currency-field {
     padding-left: 150px;
@@ -7126,7 +7088,7 @@ hr {
     font-weight: bold;
 }
 .coin-hdr {
-    width: 125px
+    width: 125px;
 }
 .name-ticker, .high-low-price-ticker, .price-ticker {
     background-color: #92D9F8;
@@ -7138,8 +7100,15 @@ hr {
     color: yellow;
 }
 .price-details-green {
-    color: #037427
+    color: #037427;
 }
 .price-details-red {
-    color: #F80606
+    color: #F80606;
+}
+.select-hdr {
+    width: 120px;
+    max-height: 20x;
+}
+.png-attr {
+    max-height: 20x;
 }
