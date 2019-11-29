@@ -74,6 +74,7 @@ class CryptoService {
                         data.raw.currency.high24Hour.toDoubleOrNull(), data.raw.currency.low24Hour.toDoubleOrNull())
 
                 cryptoDetails.name  = currencyName.toString()
+                cryptoDetails.fullName = data.coinInfo.fullName
 
                 cryptoList.add(cryptoDetails)
             }

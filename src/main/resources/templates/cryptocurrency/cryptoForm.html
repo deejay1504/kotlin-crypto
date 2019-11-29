@@ -78,19 +78,32 @@
             </li>
             <li th:each="crypto, itemStat : *{cryptoList}">
                 <div class="name-ticker">
-                    <label th:text="*{cryptoList[__${itemStat.index}__].name}"></label>
+                    <label th:text="*{cryptoList[__${itemStat.index}__].name}" data-toggle="tooltip"
+                           data-placement="bottom" th:title="*{cryptoList[__${itemStat.index}__].fullName}">
+                    </label>
                     <label th:class="*{cryptoList[__${itemStat.index}__].negativePct} ? price-details-red : price-details-green"
-                           th:text="*{cryptoList[__${itemStat.index}__].changePct24Hour}">
+                           th:text="*{cryptoList[__${itemStat.index}__].changePct24Hour}" data-toggle="tooltip"
+                           data-placement="top" th:title="*{cryptoList[__${itemStat.index}__].fullName}">
                     </label>
                 </div>
                 <div class="price-ticker">
-                    <label th:text="*{cryptoList[__${itemStat.index}__].price}"></label>
+                    <label th:text="*{cryptoList[__${itemStat.index}__].price}" data-toggle="tooltip"
+                           data-placement="top" th:title="*{cryptoList[__${itemStat.index}__].fullName}">
+                    </label>
                 </div>
                 <div class="high-low-price-ticker">
-                    High: <label class="price-ticker" th:text="*{cryptoList[__${itemStat.index}__].high24HourPrice}"></label>
+                    High:
+                    <label class="price-ticker" th:text="*{cryptoList[__${itemStat.index}__].high24HourPrice}"
+                           data-toggle="tooltip"
+                           data-placement="top" th:title="*{cryptoList[__${itemStat.index}__].fullName}">
+                    </label>
                 </div>
                 <div class="high-low-price-ticker">
-                    Low: <label class="price-ticker" th:text="*{cryptoList[__${itemStat.index}__].low24HourPrice}"></label>
+                    Low:
+                    <label class="price-ticker" th:text="*{cryptoList[__${itemStat.index}__].low24HourPrice}"
+                           data-toggle="tooltip"
+                           data-placement="top" th:title="*{cryptoList[__${itemStat.index}__].fullName}">
+                    </label>
                 </div>
             </li>
         </ul>

@@ -4,6 +4,8 @@ data class CryptoDetails (
 
     var name: String             = "",
 
+    var fullName: String         = "",
+
     var price: String            = "",
 
     var actualPrice: Double      = 0.00,
