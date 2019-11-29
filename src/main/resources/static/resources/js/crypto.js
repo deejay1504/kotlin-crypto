@@ -1,11 +1,9 @@
 //<![CDATA[
 
-    // Public constants
     var monthlist = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 
     window.onload = function() {
-//        $("body select").msDropDown();
-        $("#currencyType").msDropDown();
+        $('select').selectpicker();
 
         $("[data-toggle='tooltip']").tooltip();
 
@@ -16,17 +14,6 @@
         $("#webTicker").webTicker({
             direction: tickerDirection
         });
-
-    }
-
-
-    /* BOOTSTRAP DROPDOWN MENU - Update selected item text and image */
-   function updateCurrency(currencyId) {
-        var selText = $('#' + currencyId).text();
-        var imgSource = $('#' + currencyId).find('img').attr('src');
-        var img = '<img src="' + imgSource + '"/>';
-        $('#' + currencyId).html(img + ' ' + selText + ' <span class="caret"></span>');
-//        $("#currencyType").parents('.btn-group').find('.dropdown-toggle').html(img + ' ' + selText + ' <span class="caret"></span>');
     }
 
     // If the 'Right' radio button is ticked, scroll the ticker from right to left

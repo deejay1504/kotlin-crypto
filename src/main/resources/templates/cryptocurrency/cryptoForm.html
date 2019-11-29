@@ -12,25 +12,26 @@
                 <td><label class="currency-hdr" data-toggle="tooltip" data-placement="bottom" title="Which currency to supply the bitcoin data for">Currency:</label></td>
                 <td>
                     <select th:id="currencyType" th:name="currencyType" th:field="*{currencyType}" onchange="submitForm();"
-                          data-toggle="tooltip" data-placement="bottom" class="select-hdr"
-                            title="Which currency to supply the bitcoin data for">
-                        <option th:value="GBP" class="png-attr" data-image="resources/images/gbp.png">GBP</option>
-                        <option th:value="EUR" data-image="resources/images/eur.png">EUR</option>
-                        <option th:value="USD" data-image="resources/images/usd.png">USD</option>
-                        <option th:value="INR" data-image="resources/images/inr.png">INR</option>
-                        <option th:value="AUD" data-image="resources/images/aud.png">AUD</option>
-                        <option th:value="CAD" data-image="resources/images/cad.png">CAD</option>
-                        <option th:value="SGD" data-image="resources/images/sgd.png">SGD</option>
-                        <option th:value="CHF" data-image="resources/images/chf.png">CHF</option>
-                        <option th:value="MYR" data-image="resources/images/myr.png">MYR</option>
-                        <option th:value="JPY" data-image="resources/images/jpy.png">JPY</option>
-                        <option th:value="CNY" data-image="resources/images/cny.png">CNY</option>
+                            data-toggle="tooltip" data-placement="bottom" data-style="btn-success" data-width="auto"
+                            title="Which currency to supply the bitcoin data for" class="selectpicker">
+                        <option th:value="GBP" data-content='<img src="resources/images/gbp.png"> Great British Pound'></option>
+                        <option th:value="EUR" data-content='<img src="resources/images/eur.png"> Euro'></option>
+                        <option th:value="USD" data-content='<img src="resources/images/usd.png"> US Dollar'></option>
+                        <option th:value="INR" data-content='<img src="resources/images/inr.png"> Indian Rupee'></option>
+                        <option th:value="AUD" data-content='<img src="resources/images/aud.png"> Australian Dollar'></option>
+                        <option th:value="CAD" data-content='<img src="resources/images/cad.png"> Canadian Dollar'></option>
+                        <option th:value="SGD" data-content='<img src="resources/images/sgd.png"> Singapore Dollar'></option>
+                        <option th:value="CHF" data-content='<img src="resources/images/chf.png"> Swiss Franc'></option>
+                        <option th:value="MYR" data-content='<img src="resources/images/myr.png"> Malaysian Ringgit'></option>
+                        <option th:value="JPY" data-content='<img src="resources/images/jpy.png"> Japanese Yen'></option>
+                        <option th:value="CNY" data-content='<img src="resources/images/cny.png"> Chinese Yaun Renminbi'></option>
                     </select>
                 </td>
                 <td><label class="pad-currency-field">&nbsp;</label></td>
                 <td><label class="coin-hdr" data-toggle="tooltip" data-placement="bottom" title="How many coins to display">Number of coins:</label></td>
                 <td>
                     <select th:id="coin-limit" th:field="*{coinLimit}" onchange="submitForm();"
+                            data-style="btn-success" data-width="auto"
                             data-toggle="tooltip" data-placement="bottom" title="How many coins to display">
                         <option th:value="10">10</option>
                         <option th:value="20">20</option>

@@ -7088,7 +7088,7 @@ hr {
     font-weight: bold;
 }
 .coin-hdr {
-    width: 125px;
+    width: 135px;
 }
 .name-ticker, .high-low-price-ticker, .price-ticker {
     background-color: #92D9F8;
@@ -7107,8 +7107,5 @@ hr {
 }
 .select-hdr {
     width: 120px;
-    max-height: 20x;
-}
-.png-attr {
     max-height: 20x;
 }

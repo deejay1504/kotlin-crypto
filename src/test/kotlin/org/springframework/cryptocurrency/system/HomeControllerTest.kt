@@ -42,7 +42,7 @@ class HomeControllerTest {
     fun shouldCreateCryptoDetailsForm() {
         mockMvc.perform(get("/"))
                 .andExpect(status().isOk)
-                .andExpect(model().attributeExists("cryptoForm"))
+                .andExpect(model().attributeExists("cryptoDetailsForm"))
                 .andExpect(view().name(VIEWS_GIG_DETAILS_FORM))
     }
 
